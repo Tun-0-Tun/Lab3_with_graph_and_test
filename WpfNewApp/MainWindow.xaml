@@ -1,0 +1,62 @@
+﻿<Window x:Class="WpfNewApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfNewApp"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="545" Width="1338">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:Commands.CheckControlsCommand}"
+                CanExecute="CheckControlsItem_Click" Executed="DataFromControlsItem_Click"/>
+    </Window.CommandBindings>
+
+    <Window.Resources >
+        <DataTemplate x:Key="tmpKey">
+            <StackPanel Orientation="Horizontal" Width="270">
+                <TextBlock Text="{Binding [0], StringFormat=f4}" Margin="0, 0, 100, 0"/>
+                <TextBlock Text=" " />
+                <TextBlock Text="{Binding [1], StringFormat=f4}"  Margin="0, 0, 100, 0" />
+
+
+
+            </StackPanel>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="tmpKey2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding nodeValue, StringFormat=f4}"  Margin="0, 0, 50, 0"/>
+                <TextBlock Text=" " />
+                <TextBlock Text="{Binding realValue, StringFormat=f4}"  Margin="0, 0, 50, 0"/>
+                <TextBlock Text=" " />
+                <TextBlock Text="{Binding resultValue, StringFormat=f4}" />
+
+            </StackPanel>
+
+        </DataTemplate>
+    </Window.Resources>
+
+
+    <Grid RenderTransformOrigin="0.258,0.67" Margin="0,0,0,1" HorizontalAlignment="Left" Width="844">
+
+
+        <Menu Margin="0,0,-493,482">
+            <MenuItem Header="Data from Controls" Command="{x:Static local:Commands.CheckControlsCommand}"></MenuItem>
+        </Menu>
+
+
+        <TextBlock FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="22,27,0,0" TextWrapping="Wrap" Text="Test" VerticalAlignment="Top" RenderTransformOrigin="0.533,0.73" />
+
+        <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="22,63,0,0" TextWrapping="Wrap" Text="left grid boundary" VerticalAlignment="Top"/>
+        <TextBox Name="GridBoundariesBox" HorizontalAlignment="Left" Margin="136,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="22,96,0,0" TextWrapping="Wrap" Text="Number of nodes" VerticalAlignment="Top"/>
+        <TextBox Name="NumberOfNodesBox" HorizontalAlignment="Left" Margin="136,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.631,1.442"/>
+        <oxy:PlotView x:Name="PlotViewBox"  Model="{Binding plotModel.CurplotModel}"
+        Grid.Column="0" Margin="631,48,-303,96"/>
+    
+    </Grid>
+</Window>

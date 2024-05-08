@@ -1,0 +1,20 @@
+V1DataArray Lab3.V1DataArray  
+1,000 1 1 
+4,000 16 16 
+8,000 64 64 
+9,000 81 81 
+
+Spline approximation results:
+1,000, 1,000, 1,000
+4,000, 16,000, 16,000
+8,000, 64,000, 64,000
+9,000, 81,000, 81,000
+1,000, 1,000, 1,000
+4,000, 16,000, 16,000
+8,000, 64,000, 64,000
+9,000, 81,000, 81,000
+
+Minimal residual value: 8,952368720503575E-07
+Stop reason: specified residual norm has been reached
+Actual number of iterations: 29
+

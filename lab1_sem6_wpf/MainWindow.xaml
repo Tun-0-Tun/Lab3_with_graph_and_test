@@ -1,0 +1,111 @@
+﻿<Window x:Class="lab1_sem6_wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sharp="clr-namespace:Lab3;assembly=Lab3"
+        xmlns:local="clr-namespace:lab1_sem6_wpf"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="545" Width="1338">
+
+
+    <Window.Resources >
+        <DataTemplate x:Key="tmpKey">
+            <StackPanel Orientation="Horizontal" Width="270">
+                <TextBlock Text="{Binding [0], StringFormat=f4}" Margin="0, 0, 100, 0"/>
+                <TextBlock Text=" " />
+                <TextBlock Text="{Binding [1], StringFormat=f4}"  Margin="0, 0, 100, 0" />
+
+
+
+            </StackPanel>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="tmpKey2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding nodeValue, StringFormat=f4}"  Margin="0, 0, 50, 0"/>
+                <TextBlock Text=" " />
+                <TextBlock Text="{Binding realValue, StringFormat=f4}"  Margin="0, 0, 50, 0"/>
+                <TextBlock Text=" " />
+                <TextBlock Text="{Binding resultValue, StringFormat=f4}" />
+
+            </StackPanel>
+
+        </DataTemplate>
+    </Window.Resources>
+
+
+    <Grid RenderTransformOrigin="0.258,0.67" Margin="0,0,0,1" HorizontalAlignment="Center" Width="1318">
+
+
+        <Menu Margin="0,0,-493,482">
+            <MenuItem Header="File">
+                <MenuItem Header="Save" Command="{Binding SaveCommand}"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Execute">
+                <MenuItem Header="Data from Controls" Command="{Binding RunCommand}"></MenuItem>
+                <MenuItem Header="Data from File" Command="{Binding LoadCommand}"></MenuItem>
+            </MenuItem>
+
+        </Menu>
+
+
+        <TextBlock FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="22,27,0,0" TextWrapping="Wrap" Text="DataArray" VerticalAlignment="Top" RenderTransformOrigin="0.533,0.73" />
+
+        <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="22,63,0,0" TextWrapping="Wrap" Text="Grid boundaries" VerticalAlignment="Top"/>
+        <TextBox Name="GridBoundariesBox" HorizontalAlignment="Left" Margin="136,61,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="22,96,0,0" TextWrapping="Wrap" Text="Number of nodes" VerticalAlignment="Top"/>
+        <TextBox Name="NumberOfNodesBox" HorizontalAlignment="Left" Margin="136,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.631,1.442"/>
+
+        <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="23,133,0,0" TextWrapping="Wrap" Text="Function" VerticalAlignment="Top"/>
+        <ComboBox Name="FuncBox" HorizontalAlignment="Left" Margin="136,130,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="x^3">
+            </ComboBoxItem>
+            <ComboBoxItem Content="x^2">
+            </ComboBoxItem>
+        </ComboBox>
+
+
+        <TextBlock FontSize="13" HorizontalAlignment="Left" Margin="23,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Grid type"/><LineBreak/><Run/></TextBlock>
+        <RadioButton Name="Radio1" Content="Uniform" HorizontalAlignment="Left" Margin="100,183,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.126,0.404" />
+        <RadioButton Name="Radio2" Content="Nonuniform" HorizontalAlignment="Left" Margin="196,183,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.306,1.624"/>
+
+
+
+        <TextBlock FontSize="15" FontWeight="Bold" HorizontalAlignment="Left" Margin="23,247,0,0" TextWrapping="Wrap" Text="SplineData" VerticalAlignment="Top" RenderTransformOrigin="0.533,0.73" />
+
+        <TextBlock HorizontalAlignment="Left" Margin="22,288,0,0" TextWrapping="Wrap" Text="Number of nodes smoothing spline" VerticalAlignment="Top" Width="104"/>
+        <TextBox  Name="SmoothingSplineBox" HorizontalAlignment="Left" Margin="147,295,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.481,1.895"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="26,333,0,0" TextWrapping="Wrap" Text="Number of nodes of a uniform grid" VerticalAlignment="Top" Width="96"/>
+        <TextBox  Name="UniformNumBox" HorizontalAlignment="Left" Margin="147,340,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="27,373,0,0" TextWrapping="Wrap" Text="Discrepancy rate" VerticalAlignment="Top"/>
+        <TextBox Name="DiscrepancyRateBox" HorizontalAlignment="Left" Margin="147,373,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+
+        <TextBlock HorizontalAlignment="Left" Margin="27,419,0,0" TextWrapping="Wrap" Text="Maximum number of iterations" VerticalAlignment="Top" RenderTransformOrigin="0.494,0.504" Width="99"/>
+        <TextBox Name="MaxIterationsBox"  HorizontalAlignment="Left" Margin="147,426,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+
+        <ListBox Name="MainList"  Margin="372,61,145,312"   ItemsSource="{Binding Table_listbox_rawData}" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <ListBox.Resources>
+
+            </ListBox.Resources>
+        </ListBox>
+        <ListBox Name="SecondList"  Margin="372,265,145,74"  ItemsSource="{Binding Table_secondData}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="571,44,0,0" TextWrapping="Wrap" Text="Net value" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="372,44,0,0" TextWrapping="Wrap" Text="Exact value" VerticalAlignment="Top" RenderTransformOrigin="0.11,0.253"/>
+        <TextBlock HorizontalAlignment="Left" Margin="452,43,0,0" TextWrapping="Wrap" Text="Calculated value" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="400,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Net value"/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="495,249,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" RenderTransformOrigin="0.862,0.535"><Run Text="Calculated value"/><LineBreak/><Run/></TextBlock>
+        <oxy:PlotView Height="340" Margin="766,97,86,0" VerticalAlignment="Top"
+              x:Name="plotView" Model="{Binding ChartData}"/>
+
+
+
+    </Grid>
+</Window>
